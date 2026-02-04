@@ -628,17 +628,17 @@ const page7 = document.getElementById("page7");
 noBtn.onclick = () => {
   noClicks++;
   if (noClicks === 1) {
-    teddyGif.src="dudu.gif";
+    teddyGif.src="src/dudu.gif";
     msg.innerText = "Think again 🥺";
     yesBtn.classList.add("big");
     noBtn.style.width = "120px";
   } else if (noClicks === 2) {
-    teddyGif.src="breakRej0_1.gif";
+    teddyGif.src="src/breakRej0_1.gif";
     msg.innerText = "Are you sure? 😢";
     yesBtn.classList.add("bigger");
     noBtn.style.width = "50px";
   } else {
-    teddyGif.src="breakRej1.gif";
+    teddyGif.src="src/breakRej1.gif";
     msg.innerText = "";
     yesBtn.classList.remove("bigger");
     yesBtn.classList.add("full");
@@ -800,5 +800,6 @@ function closeViewer() {
 
 </body>
 </html>
+
 
 
