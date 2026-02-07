@@ -1316,40 +1316,74 @@ function closeViewer() {
 }
 
 
-/* Long pPress*/
+// /* Long pPress*/
 
+// document.addEventListener("DOMContentLoaded", () => {
+
+// let pressTimer;
+// const teddy = document.getElementById("teddyGif");
+// const secret = document.getElementById("secretMsg");
+
+// if (!teddy) {
+//   console.log("❌ Teddy not found");
+//   return;
+// }
+
+// function startPress() {
+//   pressTimer = setTimeout(() => {
+//     secret.classList.remove("hidden");
+//   }, 2000);
+// }
+
+// function cancelPress() {
+//   clearTimeout(pressTimer);
+// }
+
+// // Desktop
+// teddy.addEventListener("mousedown", startPress);
+// teddy.addEventListener("mouseup", cancelPress);
+// teddy.addEventListener("mouseleave", cancelPress);
+
+// // Mobile
+// teddy.addEventListener("touchstart", startPress);
+// teddy.addEventListener("touchend", cancelPress);
+
+// });
+
+// New click Logic
+  
 document.addEventListener("DOMContentLoaded", () => {
 
-let pressTimer;
 const teddy = document.getElementById("teddyGif");
 const secret = document.getElementById("secretMsg");
 
-if (!teddy) {
-  console.log("❌ Teddy not found");
+if (!teddy || !secret) {
+  console.log("❌ Teddy or Secret message not found");
   return;
 }
 
-function startPress() {
-  pressTimer = setTimeout(() => {
+let tapCount = 0;
+let tapTimer = null;
+
+teddy.addEventListener("click", () => {
+  if (navigator.vibrate) navigator.vibrate(30);
+  tapCount++;
+
+  clearTimeout(tapTimer);
+
+  tapTimer = setTimeout(() => {
+    tapCount = 0; // reset if taps are slow
+  }, 600); // ⏱ time window between taps
+
+  if (tapCount === 3) {
+    tapCount = 0;
     secret.classList.remove("hidden");
-  }, 2000);
-}
-
-function cancelPress() {
-  clearTimeout(pressTimer);
-}
-
-// Desktop
-teddy.addEventListener("mousedown", startPress);
-teddy.addEventListener("mouseup", cancelPress);
-teddy.addEventListener("mouseleave", cancelPress);
-
-// Mobile
-teddy.addEventListener("touchstart", startPress);
-teddy.addEventListener("touchend", cancelPress);
+  }
+});
 
 });
 
+  
 
 // password
 
@@ -1610,4 +1644,5 @@ function registerGalleryActivity() {
  
 </body>
 </html>
+
 
